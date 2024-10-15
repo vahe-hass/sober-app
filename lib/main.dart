@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sober_app/theme/sober_main_theme.dart';
+import 'package:sober/theme/sober_main_theme.dart';
 import 'screens/home_screen.dart';
 import 'screens/user_form_screen.dart';
 import 'screens/splash_screen.dart';
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sober',
-      theme: appTheme(), // Use a custom theme defined in another file
+      theme: appTheme(),
       initialRoute: '/',
       routes: {
         '/': (context) => FutureBuilder<bool>(

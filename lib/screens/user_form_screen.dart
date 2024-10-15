@@ -71,7 +71,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
         children: [
           const SizedBox(height: 20),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 80.0),
+            padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: const Text(
               'Let’s Start Your \n Journey',
               textAlign: TextAlign.center,
@@ -83,7 +83,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 80.0),
+            margin: const EdgeInsets.symmetric(horizontal: 60.0),
             height: 30,
             decoration: const BoxDecoration(
               border: Border(
@@ -96,7 +96,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
           ),
           const SizedBox(height: 60),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80.0),
+            padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: Form(
               key: _formKey,
               child: Column(
@@ -123,11 +123,14 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       labelText: 'Name',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Color(0xFFf2f2f2)), // Default border color
+                        borderSide: BorderSide(
+                            color: Color(0xFFf2f2f2)), // Default border color
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Color(0xFFa3c7e8)), // Border color when focused
+                        borderSide: BorderSide(
+                            color:
+                                Color(0xFFa3c7e8)), // Border color when focused
                       ),
                     ),
                     validator: (value) {
@@ -160,11 +163,14 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       labelText: 'Sobriety Start Date',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Color(0xFFf2f2f2)), // Default border color
+                        borderSide: BorderSide(
+                            color: Color(0xFFf2f2f2)), // Default border color
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Color(0xFFa3c7e8)), // Border color when focused
+                        borderSide: BorderSide(
+                            color:
+                                Color(0xFFa3c7e8)), // Border color when focused
                       ),
                       suffixIcon: Icon(Icons.calendar_today),
                     ),
