@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 ThemeData appTheme() {
   return ThemeData(
     primaryColor: Color(0xFFa3c7e8),
-    hintColor: Color(0xFFa8e6cf),
+    primaryColorLight: Color(0xFFa8e6cf),
+    hintColor: Color(0xFFffd166),
     scaffoldBackgroundColor: Color(0xFFf2f2f2),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

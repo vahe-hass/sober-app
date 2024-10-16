@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     // If user data is not loaded yet
@@ -48,15 +49,27 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Welcome, $userName!"),
+      body: Column(
+        children: [
+          Container(
+            // add container
+          ),
+          Container(
+            // date container to show date
+          ),
+          Container(
+            // space for adding quotes
+          ),
+        ],
       ),
-      body: Center(
-        child: Text(
-          'You have been sober for $soberDays days!',
-          style: TextStyle(fontSize: 28),
-          textAlign: TextAlign.center,
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).primaryColorLight,
+        unselectedItemColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dash' ),
+        ],
       ),
     );
   }

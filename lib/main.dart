@@ -4,6 +4,7 @@ import 'package:sober/theme/sober_main_theme.dart';
 import 'screens/home_screen.dart';
 import 'screens/user_form_screen.dart';
 import 'screens/splash_screen.dart';
+import 'screens/dashboard_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
         ),
         '/home': (context) => HomeScreen(),
         '/form': (context) => UserFormScreen(),
+        '/dashboard': (context) => DashboardScreen(),
       },
     );
   }
