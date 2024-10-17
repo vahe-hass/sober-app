@@ -43,87 +43,89 @@ class _HomeScreenState extends State<HomeScreen> {
   // Set up the screens after the user data has been loaded
   void _setUpScreens() {
     _screens.add(
-      Column(
-        children: [
-          SizedBox(height: 20),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 15.0),
-            height: 80,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.red),
+      SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const SizedBox(height: 40),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15.0),
+              height: 80,
             ),
-          ),
-          SizedBox(height: 20),
-          Card(
-            margin: const EdgeInsets.symmetric(horizontal: 50.0),
-            clipBehavior: Clip.hardEdge,
-            color: Colors.white,
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  color: Colors.amber,
-                  padding: EdgeInsets.all(10.0),
-                  child: const Text(
-                    'DAY',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 300,
-                  child: Center(
-                    child: Text(
-                      '$soberDays',
+            const SizedBox(height: 20),
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 50.0),
+              clipBehavior: Clip.hardEdge,
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    color: Theme.of(context).hintColor,
+                    padding: EdgeInsets.all(10.0),
+                    child: const Text(
+                      'DAY',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto',
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 20),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Transform.flip(
-                      flipX: true,
-                      flipY: true,
-                      child: Icon(Icons.format_quote_rounded, size: 80),
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Text(
-                    'Strength doesn’t come from what you can do, but from overcoming the things you thought you couldn’t.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'NotoSans',
+                  Container(
+                    height: 250,
+                    child: Center(
+                      child: Text(
+                        '$soberDays',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 112,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(Icons.format_quote_rounded, size: 80),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 20),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Transform.flip(
+                        flipX: true,
+                        flipY: true,
+                        child: Icon(Icons.format_quote_rounded, size: 80),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: const Text(
+                      'Strength doesn’t come from what you can do, but from overcoming the things you thought you couldn’t.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Icon(Icons.format_quote_rounded, size: 80),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
     _screens.add(DashboardScreen());  // Add dashboard screen
