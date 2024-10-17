@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sober',
+      debugShowCheckedModeBanner: false,
       theme: appTheme(),
       initialRoute: '/',
       routes: {

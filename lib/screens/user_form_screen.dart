@@ -67,7 +67,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
           child: Image.asset('assets/images/navigation_start2.png'),
         ),
       ),
-      body: Column(
+      body: ListView(
         children: [
           const SizedBox(height: 20),
           Container(
@@ -99,106 +99,104 @@ class _UserFormScreenState extends State<UserFormScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 60.0),
             child: Form(
               key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: const Text(
-                        'What’s Your Name ?',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
-                        ),
+              child: Column(
+                children: [
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      'What’s Your Name ?',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    // Name Input
-                    TextFormField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelText: 'Name',
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide(
-                              color: Color(0xFFf2f2f2)), // Default border color
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide(
-                              color:
-                              Color(0xFFa3c7e8)), // Border color when focused
-                        ),
+                  ),
+                  const SizedBox(height: 10),
+                  // Name Input
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      labelText: 'Name',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
+                            color: Color(0xFFf2f2f2)), // Default border color
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your name';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 60),
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'When Did You Start ?',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
-                        ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
+                            color:
+                                Color(0xFFa3c7e8)), // Border color when focused
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    // Date Input
-                    TextFormField(
-                      controller: _dateController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelText: 'Sobriety Start Date',
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide(
-                              color: Color(0xFFf2f2f2)), // Default border color
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide(
-                              color:
-                              Color(0xFFa3c7e8)), // Border color when focused
-                        ),
-                        suffixIcon: Icon(Icons.calendar_today),
-                      ),
-                      readOnly: true,
-                      onTap: () => _pickDate(context),
-                      validator: (value) {
-                        if (_sobrietyDate == null) {
-                          return 'Please select a date';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 60),
-                    // Submit Button
-                    ElevatedButton(
-                      onPressed: _saveData,
-                      child: const Text(
-                        'NEXT',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          color: Colors.black,
-                          fontWeight: FontWeight.normal,
-                        ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 60),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'When Did You Start ?',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 10),
+                  // Date Input
+                  TextFormField(
+                    controller: _dateController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      labelText: 'Sobriety Start Date',
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
+                            color: Color(0xFFf2f2f2)), // Default border color
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
+                            color:
+                                Color(0xFFa3c7e8)), // Border color when focused
+                      ),
+                      suffixIcon: Icon(Icons.calendar_today),
+                    ),
+                    readOnly: true,
+                    onTap: () => _pickDate(context),
+                    validator: (value) {
+                      if (_sobrietyDate == null) {
+                        return 'Please select a date';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 60),
+                  // Submit Button
+                  ElevatedButton(
+                    onPressed: _saveData,
+                    child: const Text(
+                      'NEXT',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
