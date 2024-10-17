@@ -55,7 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SizedBox(height: 20),
           Card(
-            margin: const EdgeInsets.symmetric(horizontal: 15.0),
+            margin: const EdgeInsets.symmetric(horizontal: 50.0),
+            clipBehavior: Clip.hardEdge,
             color: Colors.white,
             child: Column(
               children: [
@@ -68,24 +69,60 @@ class _HomeScreenState extends State<HomeScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Poppins',
+                      color: Colors.white,
                     ),
                   ),
                 ),
                 Container(
-                  child: Text(
-                    '$soberDays',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto',
+                  height: 300,
+                  child: Center(
+                    child: Text(
+                      '$soberDays',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(),
+          SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Transform.flip(
+                      flipX: true,
+                      flipY: true,
+                      child: Icon(Icons.format_quote_rounded, size: 80),
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Text(
+                    'Strength doesn’t come from what you can do, but from overcoming the things you thought you couldn’t.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'NotoSans',
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(Icons.format_quote_rounded, size: 80),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -97,9 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // If user data is not loaded yet
     if (userName.isEmpty || sobrietyStartDate == null) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text("Welcome!"),
-        ),
         body: Center(
           child: CircularProgressIndicator(),
         ),
@@ -107,9 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sober App'),
-      ),
       body: _screens[_currentIndex],  // Switches between Home and Dashboard based on the index
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,  // Tracks the current index
