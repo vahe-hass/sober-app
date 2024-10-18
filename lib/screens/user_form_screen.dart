@@ -123,14 +123,13 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       labelText: 'Name',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             color: Color(0xFFf2f2f2)), // Default border color
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
-                            color:
-                                Color(0xFFa3c7e8)), // Border color when focused
+                        borderSide: const BorderSide(
+                            color: Color(0xFFa3c7e8)), // Border color when focused
                       ),
                     ),
                     validator: (value) {
@@ -140,7 +139,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       return null;
                     },
                   ),
-                  SizedBox(height: 60),
+                  const SizedBox(height: 60),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -163,16 +162,15 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       labelText: 'Sobriety Start Date',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             color: Color(0xFFf2f2f2)), // Default border color
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(
-                            color:
-                                Color(0xFFa3c7e8)), // Border color when focused
+                        borderSide: const BorderSide(
+                            color: Color(0xFFa3c7e8)), // Border color when focused
                       ),
-                      suffixIcon: Icon(Icons.calendar_today),
+                      suffixIcon: const Icon(Icons.calendar_today),
                     ),
                     readOnly: true,
                     onTap: () => _pickDate(context),
@@ -188,11 +186,10 @@ class _UserFormScreenState extends State<UserFormScreen> {
                   ElevatedButton(
                     onPressed: _saveData,
                     child: const Text(
-                      'NEXT',
+                      'LET\'S START',
                       style: TextStyle(
                         fontFamily: 'Roboto',
                         color: Colors.black,
-                        fontWeight: FontWeight.normal,
                       ),
                     ),
                   ),

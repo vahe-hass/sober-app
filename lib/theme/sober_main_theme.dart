@@ -3,21 +3,15 @@ import 'package:flutter/material.dart';
 // Define your custom theme in this file
 ThemeData appTheme() {
   return ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Color(0xFFa3c7e8),
+      secondary: Color(0xFFa8e6cf),
+      tertiary: Color(0xFFffd166),
+    ),
     primaryColor: Color(0xFFa3c7e8),
     primaryColorLight: Color(0xFFa8e6cf),
     hintColor: Color(0xFFffd166),
     scaffoldBackgroundColor: Color(0xFFf2f2f2),
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: Colors.white,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        borderSide: const BorderSide(color: Color(0xFFf2f2f2)),
-      ),
-      focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xFFa3c7e8)), // Focus color matching primary color
-      ),
-    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFa3c7e8),

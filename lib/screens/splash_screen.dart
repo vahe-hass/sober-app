@@ -51,7 +51,6 @@ class SplashScreen extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   color: Colors.black,
-                  fontWeight: FontWeight.normal,
                 ),
               ),
             ),

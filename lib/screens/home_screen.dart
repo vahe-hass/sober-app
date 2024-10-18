@@ -135,10 +135,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // If user data is not loaded yet
     if (userName.isEmpty || sobrietyStartDate == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
-        ),
+          ),
       );
     }
 
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomSheet: Container(
         height: 1,
-        color: Color(0xFFa3c7e8),  // Custom divider color
+        color: const Color(0xFFa3c7e8),  // Custom divider color
       ),
     );
   }
