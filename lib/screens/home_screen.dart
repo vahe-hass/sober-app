@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dashboard_screen.dart';
-
+import 'dart:convert';
+import 'package:flutter/services.dart' as rootBundle;
+import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,15 +14,17 @@ class _HomeScreenState extends State<HomeScreen> {
   String userName = '';
   DateTime? sobrietyStartDate;
   int soberDays = 0;
-  int _currentIndex = 0;  // To keep track of the selected bottom nav item
+  int _currentIndex = 0;
 
   // Screens for the bottom navigation items
   final List<Widget> _screens = [];
+  String dailyQuote = '';
 
   @override
   void initState() {
     super.initState();
     _loadUserData();
+    _setDailyQuote();
   }
 
   // Function to load user data from local storage
@@ -35,100 +39,123 @@ class _HomeScreenState extends State<HomeScreen> {
         userName = name;
         sobrietyStartDate = date;
         soberDays = DateTime.now().difference(date).inDays;
-        _setUpScreens();  // Initialize the screens after loading data
       });
     }
+  }
+
+  Future<Map<String, dynamic>> _loadQuotes() async {
+    final jsonString =
+        await rootBundle.rootBundle.loadString('assets/quotes.json');
+    return jsonDecode(jsonString);
+  }
+
+  Future<String> _getQuote() async {
+    Map<String, dynamic> quotes = await _loadQuotes();
+    Random random = Random();
+    int randomNumber = random.nextInt(312);
+    List<String> quoteList = List<String>.from(quotes['quotes']);
+    return quoteList[randomNumber];
+  }
+
+  Future<void> _setDailyQuote() async {
+    String quote = await _getQuote();
+    setState(() {
+      dailyQuote = quote;
+      _setUpScreens(); // Initialize the screens after loading data
+    });
   }
 
   // Set up the screens after the user data has been loaded
   void _setUpScreens() {
     _screens.add(
-      SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const SizedBox(height: 40),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15.0),
-              height: 80,
-            ),
-            const SizedBox(height: 20),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 50.0),
-              clipBehavior: Clip.hardEdge,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    color: Theme.of(context).hintColor,
-                    padding: EdgeInsets.all(10.0),
-                    child: const Text(
-                      'DAY',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 250,
-                    child: Center(
-                      child: Text(
-                        '$soberDays',
+      ListView(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const SizedBox(height: 40),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15.0),
+                height: 80,
+              ),
+              const SizedBox(height: 20),
+              Card(
+                margin: const EdgeInsets.symmetric(horizontal: 50.0),
+                clipBehavior: Clip.hardEdge,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      color: Theme.of(context).hintColor,
+                      padding: const EdgeInsets.all(10.0),
+                      child: const Text(
+                        'DAY',
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 112,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 18,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Transform.flip(
-                        flipX: true,
-                        flipY: true,
-                        child: Icon(Icons.format_quote_rounded, size: 80),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: const Text(
-                      'Strength doesn’t come from what you can do, but from overcoming the things you thought you couldn’t.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'NotoSans',
-                        fontSize: 18,
+                    Container(
+                      height: 250,
+                      child: Center(
+                        child: Text(
+                          '$soberDays',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 112,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Icon(Icons.format_quote_rounded, size: 80),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
+              const SizedBox(height: 20),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Transform.flip(
+                          flipX: true,
+                          flipY: true,
+                          child: Icon(Icons.format_quote_rounded, size: 80),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Text(
+                        dailyQuote,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.format_quote_rounded, size: 80),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
-    _screens.add(DashboardScreen());  // Add dashboard screen
+    _screens.add(DashboardScreen()); // Add dashboard screen
   }
 
   @override
@@ -138,30 +165,37 @@ class _HomeScreenState extends State<HomeScreen> {
       return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
-          ),
+        ),
+      );
+    }
+
+    if (dailyQuote.isEmpty) {
+      return Scaffold(
+        body: Center(child: CircularProgressIndicator()), // Loading indicator
       );
     }
 
     return Scaffold(
-      body: _screens[_currentIndex],  // Switches between Home and Dashboard based on the index
+      body: _screens[
+          _currentIndex], // Switches between Home and Dashboard based on the index
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,  // Tracks the current index
+        currentIndex: _currentIndex, // Tracks the current index
         onTap: (index) {
           setState(() {
-            _currentIndex = index;  // Change screen based on tap
+            _currentIndex = index; // Change screen based on tap
           });
         },
         selectedItemColor: Theme.of(context).primaryColorLight,
         unselectedItemColor: Theme.of(context).primaryColor,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dash'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Sobriety'),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Achievements'),
         ],
       ),
       bottomSheet: Container(
         height: 1,
-        color: const Color(0xFFa3c7e8),  // Custom divider color
+        color: const Color(0xFFa3c7e8), // Custom divider color
       ),
     );
   }

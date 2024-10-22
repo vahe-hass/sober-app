@@ -82,6 +82,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               },
             ),
           ),
+          const SizedBox(height: 15),
           const Text(
             'Support Our Mission',
             style: TextStyle(
@@ -111,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
           ),
-          SizedBox(height: 15)
+          const SizedBox(height: 15)
         ],
       ),
     );
