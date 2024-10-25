@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+// import '../widgets/ReusableBannerAd.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -29,12 +30,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 40),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 15.0),
-            height: 80,
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 42),
+          // ReusableBannerAd(),
 
           // Expanded list of achievements
           Expanded(
@@ -49,7 +46,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       vertical: 8.0, horizontal: 16.0),
                   color: Colors.white,
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(6.0),
                     child: ListTile(
                       leading: Icon(
                         Icons.emoji_events,

@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -7,15 +8,28 @@ class ReusableBannerAd extends StatefulWidget {
 }
 
 class _ReusableBannerAdState extends State<ReusableBannerAd> {
-  late BannerAd _bannerAd;
+  BannerAd? _bannerAd;
   bool _isBannerAdReady = false;
 
   @override
   void initState() {
     super.initState();
+    _loadBannerAd();
+  }
+
+  void _loadBannerAd() {
+    String adUnitId;
+
+    if (Platform.isAndroid) {
+      adUnitId = 'ca-app-pub-5347171863060061~1285990146'; // Replace with Android ad unit ID
+    } else if (Platform.isIOS) {
+      adUnitId = 'ca-app-pub-5347171863060061~1285990146'; // Replace with iOS ad unit ID
+    } else {
+      adUnitId = ''; // Default empty if platform is not Android or iOS
+    }
 
     _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-5347171863060061~1285990146',
+      adUnitId: adUnitId,
       request: AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
@@ -31,25 +45,26 @@ class _ReusableBannerAdState extends State<ReusableBannerAd> {
       ),
     );
 
-    _bannerAd.load();
+    _bannerAd!.load();
   }
 
   @override
   void dispose() {
-    _bannerAd.dispose();
+    _bannerAd?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!_isBannerAdReady) {
-      return SizedBox.shrink(); // Hide the widget if the ad isn't ready yet
+    if (_isBannerAdReady) {
+      return Container(
+        alignment: Alignment.center,
+        width: _bannerAd!.size.width.toDouble(),
+        height: _bannerAd!.size.height.toDouble(),
+        child: AdWidget(ad: _bannerAd!),
+      );
+    } else {
+      return SizedBox.shrink(); // Empty space if ad is not ready
     }
-    return Container(
-      alignment: Alignment.center,
-      width: _bannerAd.size.width.toDouble(),
-      height: _bannerAd.size.height.toDouble(),
-      child: AdWidget(ad: _bannerAd),
-    );
   }
 }
