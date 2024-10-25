@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:sober/theme/sober_main_theme.dart';
 import 'screens/home_screen.dart';
 import 'screens/user_form_screen.dart';
@@ -7,6 +8,8 @@ import 'screens/splash_screen.dart';
 import 'screens/dashboard_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(MyApp());
 }
 

@@ -4,6 +4,8 @@ import 'dashboard_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 import 'dart:math';
+import '../widgets/ReusableBannerAd.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<Map<String, dynamic>> _loadQuotes() async {
     final jsonString =
-        await rootBundle.rootBundle.loadString('assets/quotes.json');
+    await rootBundle.rootBundle.loadString('assets/quotes.json');
     return jsonDecode(jsonString);
   }
 
@@ -77,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15.0),
                 height: 80,
+                child: ReusableBannerAd(),
               ),
               const SizedBox(height: 20),
               Card(
@@ -177,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: _screens[
-          _currentIndex], // Switches between Home and Dashboard based on the index
+      _currentIndex], // Switches between Home and Dashboard based on the index
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex, // Tracks the current index
         onTap: (index) {
