@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Define your custom theme in this file
-ThemeData appTheme() {
+  ThemeData appTheme() {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: Color(0xFFa3c7e8),

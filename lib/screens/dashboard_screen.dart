@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-// import '../widgets/ReusableBannerAd.dart';
+// import '../widgets/re_usable_banner_ad.dart';
 
 class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
+
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -11,18 +13,23 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   // PayPal donation link
   final String _donationUrl =
-      'https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID';
+      'https://www.paypal.com/paypalme/vahegrikori';
 
   int soberDays = 0;
 
   // Define achievements with their respective unlock days
   final List<Map<String, dynamic>> achievements = [
     {'text': 'First week sober', 'daysRequired': 7},
+    {'text': 'Improved sleep quality', 'daysRequired': 7},
     {'text': 'Two weeks sober', 'daysRequired': 14},
     {'text': 'One month sober', 'daysRequired': 30},
+    {'text': 'Better physical health', 'daysRequired': 30},
+    {'text': 'Mental Clarity', 'daysRequired': 60},
     {'text': 'Three months sober', 'daysRequired': 90},
+    {'text': 'Enhanced Focus', 'daysRequired': 90},
     {'text': 'Six months sober', 'daysRequired': 180},
     {'text': 'One year sober', 'daysRequired': 365},
+    {'text': 'Two years sober', 'daysRequired': 730},
   ];
 
   @override
@@ -30,7 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 42),
+          const SizedBox(height: 30),
           // ReusableBannerAd(),
 
           // Expanded list of achievements

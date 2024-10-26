@@ -14,6 +14,8 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -40,13 +42,13 @@ class _MyAppState extends State<MyApp> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Show a loading spinner while checking data
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData && snapshot.data == true) {
               // If user data is found, show HomeScreen directly
               return HomeScreen();
             } else {
               // If no user data is found, show the SplashScreen first
-              return SplashScreen();
+              return const SplashScreen();
             }
           },
         ),

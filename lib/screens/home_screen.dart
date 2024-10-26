@@ -4,9 +4,11 @@ import 'dashboard_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 import 'dart:math';
-// import '../widgets/ReusableBannerAd.dart';
+// import '../widgets/re_usable_banner_ad.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -72,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const SizedBox(height: 42),
+          const SizedBox(height: 46),
           // ReusableBannerAd(),
           const SizedBox(height: 20),
           Card(
@@ -123,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Transform.flip(
                       flipX: true,
                       flipY: true,
-                      child: Icon(Icons.format_quote_rounded, size: 80),
+                      child: const Icon(Icons.format_quote_rounded, size: 80),
                     ),
                   ],
                 ),
@@ -165,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     if (dailyQuote.isEmpty) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(child: CircularProgressIndicator()), // Loading indicator
       );
     }

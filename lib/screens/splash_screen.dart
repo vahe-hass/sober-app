@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFf2f2f2),
+        backgroundColor: const Color(0xFFf2f2f2),
         centerTitle: true,
         title: SizedBox(
           width: 80.0,

@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserFormScreen extends StatefulWidget {
+  const UserFormScreen({super.key});
+
   @override
   _UserFormScreenState createState() => _UserFormScreenState();
 }
@@ -60,7 +62,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFf2f2f2),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         title: SizedBox(
           width: 80.0,

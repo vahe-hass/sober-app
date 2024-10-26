@@ -21,9 +21,9 @@ class _ReusableBannerAdState extends State<ReusableBannerAd> {
     String adUnitId;
 
     if (Platform.isAndroid) {
-      adUnitId = 'ca-app-pub-5347171863060061~1285990146'; // Replace with Android ad unit ID
+      adUnitId = 'ca-app-pub-3940256099942544/6300978111'; // Replace with Android ad unit ID
     } else if (Platform.isIOS) {
-      adUnitId = 'ca-app-pub-5347171863060061~1285990146'; // Replace with iOS ad unit ID
+      adUnitId = 'ca-app-pub-3940256099942544/6300978111'; // Replace with iOS ad unit ID
     } else {
       adUnitId = ''; // Default empty if platform is not Android or iOS
     }
