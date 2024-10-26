@@ -38,20 +38,20 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => FutureBuilder<bool>(
-          future: _checkUserData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              // Show a loading spinner while checking data
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasData && snapshot.data == true) {
-              // If user data is found, show HomeScreen directly
-              return HomeScreen();
-            } else {
-              // If no user data is found, show the SplashScreen first
-              return const SplashScreen();
-            }
-          },
-        ),
+              future: _checkUserData(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  // Show a loading spinner while checking data
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasData && snapshot.data == true) {
+                  // If user data is found, show HomeScreen directly
+                  return HomeScreen();
+                } else {
+                  // If no user data is found, show the SplashScreen first
+                  return const SplashScreen();
+                }
+              },
+            ),
         '/home': (context) => HomeScreen(),
         '/form': (context) => UserFormScreen(),
         '/dashboard': (context) => DashboardScreen(),

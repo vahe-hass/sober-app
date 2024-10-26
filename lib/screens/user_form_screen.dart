@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'welcome_screen.dart'; // Import the WelcomeScreen file
 
 class UserFormScreen extends StatefulWidget {
   const UserFormScreen({super.key});
@@ -12,8 +13,7 @@ class UserFormScreen extends StatefulWidget {
 class _UserFormScreenState extends State<UserFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _dateController =
-      TextEditingController(); // Controller for date
+  final TextEditingController _dateController = TextEditingController();
   DateTime? _sobrietyDate;
 
   @override
@@ -44,17 +44,20 @@ class _UserFormScreenState extends State<UserFormScreen> {
     }
   }
 
-  // Function to save data to local storage
+  // Function to save data to local storage and navigate
   Future<void> _saveData() async {
     if (_formKey.currentState!.validate()) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('userName', _nameController.text);
       await prefs.setString('sobrietyDate', _sobrietyDate!.toIso8601String());
 
-      Navigator.pushReplacementNamed(context, '/home', arguments: {
-        'name': _nameController.text,
-        'date': _sobrietyDate,
-      });
+      // Navigate to WelcomeScreen with userName as an argument
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WelcomeScreen(userName: _nameController.text),
+        ),
+      );
     }
   }
 
@@ -105,7 +108,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
                 children: [
                   const Align(
                     alignment: Alignment.centerLeft,
-                    child: const Text(
+                    child: Text(
                       'What’s Your Name ?',
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -126,12 +129,12 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         borderSide: const BorderSide(
-                            color: Color(0xFFf2f2f2)), // Default border color
+                            color: Color(0xFFf2f2f2)),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         borderSide: const BorderSide(
-                            color: Color(0xFFa3c7e8)), // Border color when focused
+                            color: Color(0xFFa3c7e8)),
                       ),
                     ),
                     validator: (value) {
@@ -165,12 +168,12 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         borderSide: const BorderSide(
-                            color: Color(0xFFf2f2f2)), // Default border color
+                            color: Color(0xFFf2f2f2)),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                         borderSide: const BorderSide(
-                            color: Color(0xFFa3c7e8)), // Border color when focused
+                            color: Color(0xFFa3c7e8)),
                       ),
                       suffixIcon: const Icon(Icons.calendar_today),
                     ),
