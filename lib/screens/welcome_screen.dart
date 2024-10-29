@@ -27,10 +27,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 60.0),
-            height: 30,
+            margin: const EdgeInsets.symmetric(horizontal: 40.0),
+            height: 10,
             decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -40,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-          Image.asset('assets/images/sober_handshake.png'),
+          Image.asset('assets/images/sober_welcome_anim.gif'),
           const SizedBox(height: 20),
           Text(
             widget.userName,
@@ -52,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
           const SizedBox(height: 20),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 60.0),
+            padding: EdgeInsets.symmetric(horizontal: 40.0),
             child: Text(
               "Today marks the beginning of your journey with us. Sober is more than just a health and lifestyle app—it’s your companion in tracking and maintaining your sobriety. We’re here to help you stay focused, motivated, and on track, every step of the way.",
               style: TextStyle(
@@ -62,7 +63,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
           const SizedBox(height: 10),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 60.0),
+            padding: EdgeInsets.symmetric(horizontal: 40.0),
             child: Text(
               "At Sober, we believe in progress over perfection. Whether it's one day or one year, every milestone counts, and we’ll be here to celebrate each one with you. Remember, it’s not just about quitting; it’s about building a healthier, stronger future. Let’s take this journey together.",
               style: TextStyle(
@@ -76,13 +77,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Navigator.pushReplacementNamed(context, '/home');
             },
             child: const Text(
-              'OK',
+              'LET\'S START',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 color: Colors.black,
               ),
             ),
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );

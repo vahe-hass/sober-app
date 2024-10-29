@@ -12,8 +12,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   // PayPal donation link
-  final String _donationUrl =
-      'https://www.paypal.com/paypalme/vahegrikori';
+  final _donationUrl = Uri.parse('https://www.paypal.com/paypalme/vahegrikori');
 
   int soberDays = 0;
 
@@ -37,7 +36,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 30),
+          const SizedBox(height: 40),
           // ReusableBannerAd(),
 
           // Expanded list of achievements
@@ -130,8 +129,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   // Function to launch the URL
   Future<void> _launchDonationUrl() async {
-    if (await canLaunch(_donationUrl)) {
-      await launch(_donationUrl);
+    if (await canLaunchUrl(_donationUrl)) {
+      await launchUrl(_donationUrl);
     } else {
       throw 'Could not launch $_donationUrl';
     }

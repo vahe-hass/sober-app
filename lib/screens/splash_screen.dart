@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -31,7 +32,7 @@ class SplashScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
               ),
-            ),
+            ).animate().shake(duration: 800.ms, delay: 800.ms),
             const SizedBox(height: 10),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
