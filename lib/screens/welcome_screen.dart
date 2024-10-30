@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class WelcomeScreen extends StatefulWidget {
   final String userName;
@@ -41,10 +42,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-          Image.asset('assets/images/sober_welcome_anim.gif'),
+          SizedBox(
+            width: 230,
+            height: 180,
+            child: Image.asset('assets/images/sober_handshake.png').animate().fadeIn(),
+          ),
           const SizedBox(height: 20),
           Text(
-            widget.userName,
+            'Welcome, ${widget.userName}!',
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
