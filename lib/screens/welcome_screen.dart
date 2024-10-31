@@ -31,8 +31,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 40.0),
-            height: 10,
+            margin: const EdgeInsets.symmetric(horizontal: 30.0),
+            height: 5,
             decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -43,11 +43,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
           ),
           SizedBox(
-            width: 230,
-            height: 180,
-            child: Image.asset('assets/images/sober_handshake.png').animate().fadeIn(),
+            width: 260,
+            height: 220,
+            child: Image.asset(
+                'assets/images/sober_handshake.png',
+            ).animate().fadeIn(duration: 700.ms),
           ),
-          const SizedBox(height: 20),
           Text(
             'Welcome, ${widget.userName}!',
             style: const TextStyle(
@@ -58,21 +59,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
           const SizedBox(height: 20),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
               "Today marks the beginning of your journey with us. Sober is more than just a health and lifestyle app—it’s your companion in tracking and maintaining your sobriety. We’re here to help you stay focused, motivated, and on track, every step of the way.",
               style: TextStyle(
                 fontFamily: 'Noto-Sans',
+                fontSize: 16,
               ),
             ),
           ),
           const SizedBox(height: 10),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
               "At Sober, we believe in progress over perfection. Whether it's one day or one year, every milestone counts, and we’ll be here to celebrate each one with you. Remember, it’s not just about quitting; it’s about building a healthier, stronger future. Let’s take this journey together.",
               style: TextStyle(
                 fontFamily: 'Noto-Sans',
+                fontSize: 16,
               ),
             ),
           ),
@@ -82,7 +85,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Navigator.pushReplacementNamed(context, '/home');
             },
             child: const Text(
-              'LET\'S START',
+              "LET'S START",
               style: TextStyle(
                 fontFamily: 'Roboto',
                 color: Colors.black,

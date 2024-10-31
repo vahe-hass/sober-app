@@ -41,6 +41,7 @@ class SplashScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Noto-Sans',
+                  fontSize: 16,
                 ),
               ),
             ),
