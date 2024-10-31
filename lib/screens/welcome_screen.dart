@@ -46,7 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             width: 260,
             height: 220,
             child: Image.asset(
-                'assets/images/sober_handshake.png',
+              'assets/images/sober_handshake.png',
             ).animate().fadeIn(duration: 700.ms),
           ),
           Text(

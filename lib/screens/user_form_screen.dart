@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'welcome_screen.dart'; // Import the WelcomeScreen file
@@ -122,6 +123,7 @@ class _UserFormScreenState extends State<UserFormScreen> {
                   // Name Input
                   TextFormField(
                     controller: _nameController,
+                    maxLength: 14,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -143,6 +145,9 @@ class _UserFormScreenState extends State<UserFormScreen> {
                       }
                       return null;
                     },
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z\s]*$')),
+                    ],
                   ),
                   const SizedBox(height: 60),
                   const Align(
