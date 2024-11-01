@@ -1,5 +1,5 @@
-name: sober
-description: "Sober is a simple and supportive Flutter app designed to help users track their sobriety journey."
+name: sober_journey
+description: "Sober Journey is a simple and supportive Flutter app designed to help users track their sobriety journey."
 publish_to: 'none'
 
 version: 1.0.0+1

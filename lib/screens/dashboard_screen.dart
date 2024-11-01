@@ -97,7 +97,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           const Padding(
             padding: EdgeInsets.all(15.0),
             child: Text(
-              'Your donation helps us improve Sober and continue supporting more people on their journey to sobriety. Every contribution makes a difference!',
+              'Your donation helps us improve the app and continue supporting more people on their journey to sobriety. Every contribution makes a difference!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Noto-Sans',

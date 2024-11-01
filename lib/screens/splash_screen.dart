@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             ),
             const SizedBox(height: 80),
             const Text(
-              'Welcome to Sober',
+              'Welcome to Sober Journey',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

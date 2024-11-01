@@ -21,16 +21,16 @@ class _ReusableBannerAdState extends State<ReusableBannerAd> {
     String adUnitId;
 
     if (Platform.isAndroid) {
-      adUnitId = 'ca-app-pub-3940256099942544/6300978111'; // Replace with Android ad unit ID
+      adUnitId = 'ca-app-pub-3940256099942544/6300978111'; //  Android ad unit ID
     } else if (Platform.isIOS) {
-      adUnitId = 'ca-app-pub-3940256099942544/6300978111'; // Replace with iOS ad unit ID
+      adUnitId = 'ca-app-pub-3940256099942544/6300978111'; //  iOS ad unit ID
     } else {
       adUnitId = ''; // Default empty if platform is not Android or iOS
     }
 
     _bannerAd = BannerAd(
       adUnitId: adUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
@@ -39,7 +39,7 @@ class _ReusableBannerAdState extends State<ReusableBannerAd> {
           });
         },
         onAdFailedToLoad: (ad, error) {
-          print('Ad failed to load: $error');
+          debugPrint('Banner ad failed to load: ${error.message}');
           ad.dispose();
         },
       ),
@@ -64,7 +64,7 @@ class _ReusableBannerAdState extends State<ReusableBannerAd> {
         child: AdWidget(ad: _bannerAd!),
       );
     } else {
-      return SizedBox.shrink(); // Empty space if ad is not ready
+      return const SizedBox.shrink(); // Empty space if ad is not ready
     }
   }
 }

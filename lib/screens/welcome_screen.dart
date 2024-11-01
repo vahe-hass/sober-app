@@ -16,10 +16,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: SizedBox(
-          width: 80.0,
-          child: Image.asset('assets/images/main_txt_logo.png'),
-        ),
+        title: const Text(
+          'Sober Journey',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins',
+            color: Color(0xFFa3c7e8),
+          ),
+        ).animate().shake(duration: 800.ms, delay: 800.ms),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Color(0xFFa3c7e8)),
           onPressed: () {
@@ -61,7 +66,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
-              "Today marks the beginning of your journey with us. Sober is more than just a health and lifestyle app—it’s your companion in tracking and maintaining your sobriety. We’re here to help you stay focused, motivated, and on track, every step of the way.",
+              "Today marks the beginning of your journey with us. Sober Journey is more than just a health and lifestyle app—it’s your companion in tracking and maintaining your sobriety. We’re here to help you stay focused, motivated, and on track, every step of the way.",
               style: TextStyle(
                 fontFamily: 'Noto-Sans',
                 fontSize: 16,
@@ -72,7 +77,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
-              "At Sober, we believe in progress over perfection. Whether it's one day or one year, every milestone counts, and we’ll be here to celebrate each one with you. Remember, it’s not just about quitting; it’s about building a healthier, stronger future. Let’s take this journey together.",
+              "At Sober Journey, we believe in progress over perfection. Whether it's one day or one year, every milestone counts, and we’ll be here to celebrate each one with you. Remember, it’s not just about quitting; it’s about building a healthier, stronger future. Let’s take this journey together.",
               style: TextStyle(
                 fontFamily: 'Noto-Sans',
                 fontSize: 16,

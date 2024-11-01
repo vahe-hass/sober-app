@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:sober/theme/sober_main_theme.dart';
+import 'package:sober_journey/theme/sober_main_theme.dart';
 import 'screens/home_screen.dart';
 import 'screens/user_form_screen.dart';
 import 'screens/splash_screen.dart';
@@ -10,7 +10,7 @@ import 'screens/dashboard_screen.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sober',
+      title: 'Sober Journey',
       debugShowCheckedModeBanner: false,
       theme: appTheme(),
       initialRoute: '/',
@@ -45,16 +45,16 @@ class _MyAppState extends State<MyApp> {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasData && snapshot.data == true) {
                   // If user data is found, show HomeScreen directly
-                  return HomeScreen();
+                  return const HomeScreen();
                 } else {
                   // If no user data is found, show the SplashScreen first
                   return const SplashScreen();
                 }
               },
             ),
-        '/home': (context) => HomeScreen(),
-        '/form': (context) => UserFormScreen(),
-        '/dashboard': (context) => DashboardScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/form': (context) => const UserFormScreen(),
+        '/dashboard': (context) => const DashboardScreen(),
       },
     );
   }

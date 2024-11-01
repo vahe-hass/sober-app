@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
   ThemeData appTheme() {
   return ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      seedColor: Color(0xFFa3c7e8),
-      secondary: Color(0xFFa8e6cf),
-      tertiary: Color(0xFFffd166),
+      seedColor: const Color(0xFFa3c7e8),
+      secondary: const Color(0xFFa8e6cf),
+      tertiary: const Color(0xFFffd166),
     ),
-    primaryColor: Color(0xFFa3c7e8),
-    primaryColorLight: Color(0xFFa8e6cf),
-    hintColor: Color(0xFFffd166),
-    scaffoldBackgroundColor: Color(0xFFf2f2f2),
+    primaryColor: const Color(0xFFa3c7e8),
+    primaryColorLight: const Color(0xFFa8e6cf),
+    hintColor: const Color(0xFFffd166),
+    scaffoldBackgroundColor: const Color(0xFFf2f2f2),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFa3c7e8),

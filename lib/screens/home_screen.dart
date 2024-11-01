@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-    _screens.add(DashboardScreen()); // Add dashboard screen
+    _screens.add(const DashboardScreen()); // Add dashboard screen
   }
 
   @override
