@@ -22,13 +22,13 @@ class SplashScreen extends StatelessWidget {
             SizedBox(
               width: 250.0,
               height: 250.0,
-              child: Image.asset('assets/images/logo_Vertical.png'),
+              child: Image.asset('assets/images/main_logo.png'),
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 60),
             const Text(
-              'Welcome to Sober Journey',
+              'Welcome',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Poppins',
               ),

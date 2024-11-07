@@ -77,7 +77,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
-              "At Sober Journey, we believe in progress over perfection. Whether it's one day or one year, every milestone counts, and we’ll be here to celebrate each one with you. Remember, it’s not just about quitting; it’s about building a healthier, stronger future. Let’s take this journey together.",
+              "At Sober Journey, we believe in progress over perfection. Whether it's one day or one year, every milestone counts, and we’ll be here to celebrate each one with you. Remember, it’s not just about quitting; it’s about building a healthier, stronger future.",
               style: TextStyle(
                 fontFamily: 'Noto-Sans',
                 fontSize: 16,
