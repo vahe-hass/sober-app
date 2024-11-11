@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sober_journey/widgets/noti.dart';
 import 'dashboard_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
@@ -156,6 +157,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        LocalNotifications.showSimpleNotification(title: "Simple Noti", body: "Hi you should quit quit alchohol", payload: "Simple Payload");
+                      },
+                      child: Text("Press for Noti"),
+
                     ),
                   ],
                 ),
