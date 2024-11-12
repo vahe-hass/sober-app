@@ -13,6 +13,10 @@ void main() async {
   MobileAds.instance.initialize();
 
   await LocalNotifications.init();
+  LocalNotifications.showPeriodicNotifications(
+      title: "Stay Strong on Your Journey!",
+      body: "rack today’s progress and reflect on how far you’ve come.",
+      payload: "daily_check_in");
   runApp(const MyApp());
 }
 

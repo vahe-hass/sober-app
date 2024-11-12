@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sober_journey/widgets/noti.dart';
 import 'dashboard_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 import 'dart:math';
-import '../widgets/re_usable_banner_ad.dart';
+// import '../widgets/re_usable_banner_ad.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -84,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(height: 46),
-                    ReusableBannerAd(),
+                    // ReusableBannerAd(),
                     const SizedBox(height: 20),
                     Card(
                       margin: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -157,16 +156,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        LocalNotifications.showSimpleNotification(title: "Simple Noti", body: "Hi you should quit quit alchohol", payload: "Simple Payload");
-                      },
-                      child: Text("Press for Noti"),
-
                     ),
                   ],
                 ),

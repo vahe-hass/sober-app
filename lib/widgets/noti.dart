@@ -4,6 +4,9 @@ class LocalNotifications {
   static final FlutterLocalNotificationsPlugin
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
+  static Future<void> onDidReceiveNotification(
+      NotificationResponse notificationResponse) async {}
+
   static Future init() async {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
@@ -19,27 +22,39 @@ class LocalNotifications {
             iOS: initializationSettingsDarwin,
             macOS: initializationSettingsDarwin,
             linux: initializationSettingsLinux);
-    await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: (details) => null);
+    await _flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: onDidReceiveNotification,
+      onDidReceiveBackgroundNotificationResponse: onDidReceiveNotification,
+    );
+
+    //   Request permission for Android
+    await _flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
   }
 
-  static Future showSimpleNotification({
+
+  static Future showPeriodicNotifications({
     required String title,
     required String body,
     required String payload,
-})async{
+  }) async {
     const AndroidNotificationDetails androidNotificationDetails =
-    AndroidNotificationDetails('your channel id', 'your channel name',
-        channelDescription: 'your channel description',
-        importance: Importance.max,
-        priority: Priority.high,
-        ticker: 'ticker');
+        AndroidNotificationDetails(
+      'sober_journey_channel_id',
+      'Sober Journey Notifications',
+      channelDescription: 'Notifications for sobriety reminders and updates',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
     const NotificationDetails notificationDetails =
-    NotificationDetails(android: androidNotificationDetails);
-    await _flutterLocalNotificationsPlugin.show(
-        0, title, body, notificationDetails,
-        payload: payload);
+        NotificationDetails(android: androidNotificationDetails);
+    await _flutterLocalNotificationsPlugin.periodicallyShow(
+        0, title, body, RepeatInterval.daily, notificationDetails,
+        payload: payload,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle);
   }
 }
-
-
