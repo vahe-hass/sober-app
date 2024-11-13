@@ -4,9 +4,6 @@ class LocalNotifications {
   static final FlutterLocalNotificationsPlugin
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  static Future<void> onDidReceiveNotification(
-      NotificationResponse notificationResponse) async {}
-
   static Future init() async {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
@@ -14,18 +11,12 @@ class LocalNotifications {
         AndroidInitializationSettings('@mipmap/ic_launcher');
     final DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings();
-    final LinuxInitializationSettings initializationSettingsLinux =
-        LinuxInitializationSettings(defaultActionName: 'Open notification');
     final InitializationSettings initializationSettings =
         InitializationSettings(
             android: initializationSettingsAndroid,
-            iOS: initializationSettingsDarwin,
-            macOS: initializationSettingsDarwin,
-            linux: initializationSettingsLinux);
+            iOS: initializationSettingsDarwin);
     await _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveNotificationResponse: onDidReceiveNotification,
-      onDidReceiveBackgroundNotificationResponse: onDidReceiveNotification,
     );
 
     //   Request permission for Android
@@ -35,25 +26,23 @@ class LocalNotifications {
         ?.requestNotificationsPermission();
   }
 
-
-  static Future showPeriodicNotifications({
-    required String title,
-    required String body,
-    required String payload,
-  }) async {
-    const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-      'sober_journey_channel_id',
-      'Sober Journey Notifications',
-      channelDescription: 'Notifications for sobriety reminders and updates',
-      importance: Importance.max,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+  static Future showPeriodicNotifications(
+      {required String title,
+      required String body,
+      required String payload}) async {
+    const NotificationDetails platformChannelSpecific = NotificationDetails(
+        android: AndroidNotificationDetails(
+          'sober_journey_channel_id',
+          'Sober Journey Notifications',
+          channelDescription:
+              'Notifications for sobriety reminders and updates',
+          importance: Importance.max,
+          priority: Priority.high,
+          ticker: 'ticker',
+        ),
+        iOS: DarwinNotificationDetails());
     await _flutterLocalNotificationsPlugin.periodicallyShow(
-        0, title, body, RepeatInterval.daily, notificationDetails,
+        0, title, body, RepeatInterval.everyMinute, platformChannelSpecific,
         payload: payload,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle);
   }
