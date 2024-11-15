@@ -5,8 +5,6 @@ class LocalNotifications {
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   static Future init() async {
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
     final DarwinInitializationSettings initializationSettingsDarwin =
@@ -42,7 +40,7 @@ class LocalNotifications {
         ),
         iOS: DarwinNotificationDetails());
     await _flutterLocalNotificationsPlugin.periodicallyShow(
-        0, title, body, RepeatInterval.everyMinute, platformChannelSpecific,
+        0, title, body, RepeatInterval.daily, platformChannelSpecific,
         payload: payload,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle);
   }
