@@ -75,7 +75,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30.0),
                       child: Text(
-                        "Today marks the beginning of your journey with us. Sober Journey is more than just a health and lifestyle app—it’s your companion in tracking and maintaining your sobriety. We’re here to help you stay focused, motivated, and on track, every step of the way.",
+                        "Today marks the beginning of your journey with us. Sober Journey is more than just a health and lifestyle app, it’s your companion in tracking and maintaining your sobriety. We’re here to help you stay focused, motivated, and on track, every step of the way.",
                         style: TextStyle(
                           fontFamily: 'Noto-Sans',
                           fontSize: 16,

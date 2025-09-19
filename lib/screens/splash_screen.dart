@@ -44,7 +44,7 @@ class SplashScreen extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30.0),
                       child: Text(
-                        'Your journey to a healthier, stronger you starts today. We’re here to support you every step of the way—one day at a time. Track your progress, celebrate your wins, and stay motivated as you take control of your life.',
+                        'Your journey to a healthier, stronger you starts today. We’re here to support you every step of the way, one day at a time. Track your progress, celebrate your wins, and stay motivated as you take control of your life.',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Noto-Sans',

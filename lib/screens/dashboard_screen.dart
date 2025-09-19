@@ -18,7 +18,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   // Define achievements with their respective unlock days
   final List<Map<String, dynamic>> achievements = [
-    {'text': 'First week sober', 'daysRequired': 7},
     {'text': 'Improved sleep quality', 'daysRequired': 7},
     {'text': 'Two weeks sober', 'daysRequired': 14},
     {'text': 'One month sober', 'daysRequired': 30},

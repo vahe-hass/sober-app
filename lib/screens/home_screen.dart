@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dashboard_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' as rootBundle;
 import 'dart:math';
-// import '../widgets/re_usable_banner_ad.dart';
+
+import 'dashboard_screen.dart';
+import 'history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         userName = name;
         sobrietyStartDate = date;
-        soberDays = DateTime.now().difference(date).inDays;
+        soberDays = DateTime.now().difference(date).inDays + 1;
       });
     }
   }
@@ -68,8 +69,43 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // Reset sobriety counter and save streak to history
+  Future<void> _resetCounter() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (sobrietyStartDate != null) {
+      final int streak = DateTime.now().difference(sobrietyStartDate!).inDays + 1;
+      final Map<String, dynamic> entry = {
+        'days': streak,
+        'endedAt': DateTime.now().toIso8601String(),
+        'note': ''
+      };
+
+      final List<String> list = prefs.getStringList('previousStreaks') ?? [];
+      list.add(json.encode(entry));
+      await prefs.setStringList('previousStreaks', list);
+    }
+
+    // Normalize to date only
+    DateTime dateOnly(DateTime dt) {
+      return DateTime(dt.year, dt.month, dt.day);
+    }
+
+    // Reset counter
+    DateTime now = DateTime.now();
+    DateTime adjustednow = dateOnly(now);
+    await prefs.setString('sobrietyDate', adjustednow.toIso8601String());
+
+    setState(() {
+      sobrietyStartDate = adjustednow;
+      soberDays = DateTime.now().difference(adjustednow).inDays + 1;
+      _currentIndex = 0;
+    });
+  }
+
   // Set up the screens after the user data has been loaded
   void _setUpScreens() {
+    _screens.clear();
     _screens.add(
       LayoutBuilder(
         builder: (context, constraints) {
@@ -83,8 +119,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(height: 46),
-                    // ReusableBannerAd(),
-                    const SizedBox(height: 20),
                     Card(
                       margin: const EdgeInsets.symmetric(horizontal: 30.0),
                       clipBehavior: Clip.hardEdge,
@@ -107,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Container(
                             height: 250,
+                            alignment: Alignment.center,
                             child: FittedBox(
                               fit: BoxFit.contain,
                               child: Text(
@@ -133,12 +168,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               Transform.flip(
                                 flipX: true,
                                 flipY: true,
-                                child: const Icon(Icons.format_quote_rounded, size: 80),
+                                child: const Icon(Icons.format_quote_rounded,
+                                    size: 80),
                               ),
                             ],
                           ),
                           Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                            margin:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Text(
                               dailyQuote,
                               textAlign: TextAlign.center,
@@ -165,34 +202,73 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     );
-    _screens.add(const DashboardScreen()); // Add dashboard screen
+    _screens.add(const DashboardScreen());
+    _screens.add(const HistoryScreen());
+    _screens.add(Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 60.0),
+            child: Text(
+              'Great job! Your journey is still strong. Keep building your streak.',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins',
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            child: Text(
+              'When you reset your sobriety date, your current streak will be safely saved in your history as a reminder of your progress. Then, you’ll get a fresh start from Day One. Another chance to grow stronger.',
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: "Noto-Sans",
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 40),
+          ElevatedButton(
+            onPressed: _resetCounter,
+            child: const Text(
+              "Restart Journey",
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    // If user data is not loaded yet
     if (userName.isEmpty || sobrietyStartDate == null) {
       return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
+        body: Center(child: CircularProgressIndicator()),
       );
     }
 
     if (dailyQuote.isEmpty) {
       return const Scaffold(
-        body: Center(child: CircularProgressIndicator()), // Loading indicator
+        body: Center(child: CircularProgressIndicator()),
       );
     }
 
     return Scaffold(
-      body: _screens[
-          _currentIndex], // Switches between Home and Dashboard based on the index
+      body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex, // Tracks the current index
+        currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Change screen based on tap
+            _currentIndex = index;
           });
         },
         selectedItemColor: Theme.of(context).primaryColorLight,
@@ -202,11 +278,13 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Sobriety'),
           BottomNavigationBarItem(
               icon: Icon(Icons.dashboard), label: 'Achievements'),
+          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+          BottomNavigationBarItem(icon: Icon(Icons.refresh), label: 'Reset'),
         ],
       ),
       bottomSheet: Container(
         height: 1,
-        color: const Color(0xFFa3c7e8), // Custom divider color
+        color: const Color(0xFFa3c7e8),
       ),
     );
   }
