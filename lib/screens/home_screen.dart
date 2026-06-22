@@ -6,6 +6,8 @@ import 'dart:math';
 
 import 'dashboard_screen.dart';
 import 'history_screen.dart';
+import 'daily_checkin_screen.dart';
+import 'mood_journal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -204,6 +206,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     _screens.add(const DashboardScreen());
     _screens.add(const HistoryScreen());
+    _screens.add(const DailyCheckInScreen());
+    _screens.add(const MoodJournalScreen());
     _screens.add(Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -276,9 +280,10 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Sobriety'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard), label: 'Achievements'),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Trophies'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Check-In'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Journal'),
           BottomNavigationBarItem(icon: Icon(Icons.refresh), label: 'Reset'),
         ],
       ),
